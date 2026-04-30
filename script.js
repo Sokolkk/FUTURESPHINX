@@ -22,6 +22,8 @@ const leadFormModal = document.getElementById("leadFormModal");
 const leadCaptureForm = document.getElementById("leadCaptureForm");
 const leadFormStatus = document.getElementById("leadFormStatus");
 const leadSubmitBtn = document.getElementById("leadSubmitBtn");
+const leadContactInput = document.getElementById("leadContactInput");
+const leadMessageInput = document.getElementById("leadMessageInput");
 const openFormButtons = document.querySelectorAll(".js-open-form");
 const closeFormTriggers = document.querySelectorAll("[data-close-form]");
 
@@ -65,12 +67,61 @@ async function handleSubmit(formData) {
 }
 
 if (leadCaptureForm) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  const telegramRegex = /^(?:@[\w]{5,32}|https?:\/\/(?:t\.me|telegram\.me)\/[\w]{5,32})$/i;
+  const phoneRegex = /^(?:\+?\d[\d\s\-()]{8,}\d)$/;
+
+  function isValidContact(value) {
+    const clean = String(value || "").trim();
+    return emailRegex.test(clean) || telegramRegex.test(clean) || phoneRegex.test(clean);
+  }
+
+  function validateContact() {
+    if (!leadContactInput) return true;
+    const value = leadContactInput.value.trim();
+    if (!value) {
+      leadContactInput.setCustomValidity("Укажите email, Telegram или телефон.");
+      return false;
+    }
+    if (!isValidContact(value)) {
+      leadContactInput.setCustomValidity("Введите корректный email, Telegram (@username или t.me/...) либо телефон.");
+      return false;
+    }
+    leadContactInput.setCustomValidity("");
+    return true;
+  }
+
+  function validateMessage() {
+    if (!leadMessageInput) return true;
+    const text = leadMessageInput.value.trim();
+    if (text.length < 50) {
+      leadMessageInput.setCustomValidity("Описание задачи должно быть не короче 50 символов.");
+      return false;
+    }
+    leadMessageInput.setCustomValidity("");
+    return true;
+  }
+
+  if (leadContactInput) {
+    leadContactInput.addEventListener("input", validateContact);
+  }
+
+  if (leadMessageInput) {
+    leadMessageInput.addEventListener("input", validateMessage);
+  }
+
   leadCaptureForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (!leadCaptureForm.reportValidity()) return;
+    const contactOk = validateContact();
+    const messageOk = validateMessage();
+    if (!contactOk || !messageOk || !leadCaptureForm.reportValidity()) return;
 
     const form = new FormData(leadCaptureForm);
     const payload = Object.fromEntries(form.entries());
+    payload.task_type = payload.taskType || "";
+    payload["Тип задачи"] = payload.taskType || "";
+    payload["Контакт"] = payload.contact || "";
+    payload["Описание"] = payload.message || "";
     payload.source = "FutureSphinx Landing";
     payload.timestamp = new Date().toISOString();
 

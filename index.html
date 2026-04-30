@@ -421,7 +421,13 @@
               </label>
               <label class="lead-field">
                 <span>Контакт (Email / Telegram / Телефон)</span>
-                <input type="text" name="contact" placeholder="you@example.com / @username" required />
+                <input
+                  id="leadContactInput"
+                  type="text"
+                  name="contact"
+                  placeholder="you@example.com / @username / +7 999 123-45-67"
+                  required
+                />
               </label>
             </div>
 
@@ -432,7 +438,8 @@
               </label>
               <label class="lead-field">
                 <span>Тип задачи</span>
-                <select name="taskType">
+                <select name="taskType" required>
+                  <option value="" selected disabled>Выберите тип задачи</option>
                   <option value="ИИ-агенты">ИИ-агенты</option>
                   <option value="Voice Tech">Voice Tech</option>
                   <option value="MVP за 48 часов">MVP за 48 часов</option>
@@ -444,13 +451,35 @@
 
             <label class="lead-field">
               <span>Кратко о задаче</span>
-              <textarea name="message" rows="4" placeholder="Что нужно запустить и в какие сроки?" required></textarea>
+              <textarea
+                id="leadMessageInput"
+                name="message"
+                rows="4"
+                minlength="50"
+                placeholder="Что нужно запустить и в какие сроки? Минимум 50 символов."
+                required
+              ></textarea>
             </label>
 
             <label class="lead-consent">
-              <input type="checkbox" name="consent" required />
-              <span>Согласен на обработку данных для обратной связи.</span>
+              <input id="leadConsentInput" type="checkbox" name="consent" required />
+              <span>Согласен на обработку персональных данных для обратной связи.</span>
             </label>
+            <details class="lead-consent-details">
+              <summary>Прочитать согласие на обработку персональных данных (152-ФЗ)</summary>
+              <p>
+                Нажимая «Отправить заявку», вы подтверждаете согласие на обработку персональных данных
+                (имя, контакт, данные проекта и текст заявки) в целях обратной связи и подготовки коммерческого
+                предложения. Обработка включает сбор, запись, хранение и использование данных с применением и без
+                применения средств автоматизации. Согласие действует до достижения цели обработки или до отзыва.
+              </p>
+              <p>
+                Основание: Федеральный закон РФ от 27.07.2006 № 152-ФЗ «О персональных данных».
+                <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank" rel="noreferrer">
+                  Текст закона
+                </a>
+              </p>
+            </details>
 
             <div class="lead-form__actions">
               <button id="leadSubmitBtn" type="submit" class="lead-submit-btn">

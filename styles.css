@@ -1537,6 +1537,21 @@ body {
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
+.lead-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #8fefff 50%),
+    linear-gradient(135deg, #8fefff 50%, transparent 50%);
+  background-position:
+    calc(100% - 16px) calc(50% - 2px),
+    calc(100% - 10px) calc(50% - 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+
 .lead-field textarea {
   resize: vertical;
   min-height: 112px;
@@ -1561,6 +1576,38 @@ body {
 .lead-consent input {
   margin-top: 0.06rem;
   accent-color: #00d1ff;
+}
+
+.lead-consent-details {
+  margin: -0.12rem 0 0;
+  border: 1px solid rgba(95, 176, 255, 0.32);
+  border-radius: 0.64rem;
+  background: rgba(8, 22, 46, 0.64);
+  padding: 0.52rem 0.58rem;
+}
+
+.lead-consent-details summary {
+  cursor: pointer;
+  color: #a8eefe;
+  font-size: 0.76rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.lead-consent-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.lead-consent-details p {
+  margin: 0.48rem 0 0;
+  color: rgba(205, 226, 246, 0.9);
+  font-size: 0.75rem;
+  line-height: 1.42;
+}
+
+.lead-consent-details a {
+  color: #78eaff;
+  text-decoration: underline;
 }
 
 .lead-form__actions {
