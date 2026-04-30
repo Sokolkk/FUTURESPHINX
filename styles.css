@@ -1552,6 +1552,19 @@ body {
   padding-right: 2rem;
 }
 
+.lead-field select:invalid {
+  color: rgba(201, 223, 244, 0.76);
+}
+
+.lead-field select option {
+  color: #0b1e3b;
+  background: #ffffff;
+}
+
+.lead-field select option:disabled {
+  color: #6b7687;
+}
+
 .lead-field textarea {
   resize: vertical;
   min-height: 112px;
