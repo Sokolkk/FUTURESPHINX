@@ -29,20 +29,32 @@ const closeFormTriggers = document.querySelectorAll("[data-close-form]");
 
 function openLeadFormModal() {
   if (!leadFormModal) return;
+  leadFormModal.classList.remove("is-closing");
   leadFormModal.hidden = false;
   leadFormModal.setAttribute("aria-hidden", "false");
   document.documentElement.classList.add("modal-open");
+  requestAnimationFrame(() => {
+    leadFormModal.classList.add("is-visible");
+  });
 }
 
 function closeLeadFormModal() {
   if (!leadFormModal) return;
-  leadFormModal.hidden = true;
-  leadFormModal.setAttribute("aria-hidden", "true");
-  document.documentElement.classList.remove("modal-open");
-  if (leadFormStatus) {
-    leadFormStatus.textContent = "";
-    leadFormStatus.className = "lead-form__status";
-  }
+  leadFormModal.classList.remove("is-visible");
+  leadFormModal.classList.add("is-closing");
+
+  const finalizeClose = () => {
+    leadFormModal.hidden = true;
+    leadFormModal.setAttribute("aria-hidden", "true");
+    leadFormModal.classList.remove("is-closing");
+    document.documentElement.classList.remove("modal-open");
+    if (leadFormStatus) {
+      leadFormStatus.textContent = "";
+      leadFormStatus.className = "lead-form__status";
+    }
+  };
+
+  setTimeout(finalizeClose, 320);
 }
 
 openFormButtons.forEach((btn) => {
