@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FutureSphinx — Архитектура цифрового превосходства</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            electric: "#00D1FF"
+          },
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="bg-[#04070f] text-slate-100 antialiased">
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="fixed inset-0 -z-30">
+    <img src="./assets/hero-board.jpg" alt="Фон печатной платы" class="h-full w-full object-cover brightness-[0.16] saturate-125" />
+    <div class="absolute inset-0 bg-[linear-gradient(160deg,rgba(1,7,22,0.84),rgba(3,4,10,0.95))]"></div>
+    <div class="absolute inset-0 tech-grid"></div>
+  </div>
+
+  <main class="mx-auto w-full max-w-[1280px] px-4 py-6 md:px-8 md:py-10">
+    <section class="lab-shell reveal rounded-[14px] border border-white/15">
+      <canvas id="fxCanvas" class="pointer-events-none absolute inset-0 z-[1]"></canvas>
+      <div class="lab-bg absolute inset-0 z-0"></div>
+
+      <header class="relative z-10 flex items-center justify-between border-b border-white/10 px-4 py-3 md:px-7">
+        <a href="#" class="inline-flex items-center gap-2">
+          <span class="inline-flex h-6 w-6 items-center justify-center rounded border border-electric/50 bg-electric/10">
+            <svg viewBox="0 0 64 64" class="h-4 w-4 text-electric" fill="none" stroke="currentColor" stroke-width="4">
+              <path d="M14 46l6-24 12 10 12-10 6 24-18 8-18-8z"></path>
+              <path d="M24 18l8-8 8 8"></path>
+            </svg>
+          </span>
+          <span class="text-xs font-extrabold tracking-[0.12em]">FUTURESPHINX</span>
+        </a>
+        <nav class="hidden items-center gap-5 text-xs font-semibold text-slate-300 md:flex">
+          <a href="#services" class="js-scroll transition hover:text-electric">Услуги</a>
+          <a href="#stack" class="js-scroll transition hover:text-electric">Технологии</a>
+          <a href="#portfolio" class="js-scroll transition hover:text-electric">Портфолио</a>
+          <a href="#contacts" class="js-scroll transition hover:text-electric">Контакты</a>
+        </nav>
+      </header>
+
+      <div class="relative z-10 px-4 pb-5 pt-7 md:px-8 md:pt-11">
+        <section id="heroIntro" class="reveal">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-electric/85">High-Tech Lab Product Agency</p>
+          <h1 class="mt-3 max-w-4xl text-4xl font-extrabold leading-[1.02] text-white drop-shadow-[0_0_16px_rgba(255,255,255,0.16)] md:text-6xl">
+            Архитектура Цифрового
+            <span class="block text-electric drop-shadow-[0_0_28px_rgba(0,209,255,0.64)]">Превосходства</span>
+          </h1>
+          <p class="mt-5 max-w-3xl text-base leading-relaxed text-slate-200/90 md:text-[21px] md:leading-relaxed">
+            Проектирую и запускаю сложные цифровые продукты за 48 часов:
+            от идеи и прототипа до рабочего сценария с ИИ-агентами, аналитикой и автоматизированной логикой.
+          </p>
+          <button
+            id="openFormBtn"
+            type="button"
+            class="js-open-form pulse-btn mt-7 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/90 px-6 py-3 text-sm font-bold uppercase tracking-[0.06em] text-slate-900 transition hover:bg-white"
+          >
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M5 12h14"></path>
+              <path d="M13 6l6 6-6 6"></path>
+            </svg>
+            Оставить заявку
+          </button>
+        </section>
+
+        <section id="services" class="mt-10 scroll-mt-24 md:scroll-mt-28">
+          <h2 class="reveal text-4xl font-extrabold tracking-tight text-white">Ключевые услуги</h2>
+          <div class="service-grid mt-5">
+            <article class="reveal service-card tone-cyan service-card--interactive" tabindex="0" aria-expanded="false">
+              <div class="service-summary">
+                <div>
+                  <div class="service-head">
+                    <h3>ИИ-агенты</h3>
+                    <span class="service-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                        <path d="M12 3a3 3 0 0 0-3 3v1H8a3 3 0 0 0-3 3v1h1a3 3 0 0 0 3 3h1v1a3 3 0 0 0 3 3h1v-1a3 3 0 0 0 3-3v-1h1a3 3 0 0 0 3-3v-1h-1a3 3 0 0 0-3-3h-1V6a3 3 0 0 0-3-3h-1z"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="service-short">Интеграция кастомных LLM</p>
+                </div>
+                <div class="service-meta">01 // FUTURESPHINX</div>
+              </div>
+              <div class="service-detail">
+                <p>Разработка автономных агентов на базе GPT-4o и Claude 3.5. Автоматизация техподдержки, холодного поиска и глубокой аналитики данных без участия человека.</p>
+              </div>
+            </article>
+
+            <article class="reveal service-card tone-violet service-card--interactive" tabindex="0" aria-expanded="false">
+              <div class="service-summary">
+                <div>
+                  <div class="service-head">
+                    <h3>Voice Tech</h3>
+                    <span class="service-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                        <path d="M4 12h2M8 9v6M12 6v12M16 9v6M20 11v2"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="service-short">Синтез и клонирование</p>
+                </div>
+                <div class="service-meta">02 // FUTURESPHINX</div>
+              </div>
+              <div class="service-detail">
+                <p>Создание цифровых двойников голоса с сохранением интонаций. Интеграция в IVR-системы и создание контента для YouTube и TikTok со студийным качеством.</p>
+              </div>
+            </article>
+
+            <article class="reveal service-card tone-pink service-card--interactive" tabindex="0" aria-expanded="false">
+              <div class="service-summary">
+                <div>
+                  <div class="service-head">
+                    <h3>MVP за 48 часов</h3>
+                    <span class="service-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                        <path d="M4 4h16v12H4z"></path>
+                        <path d="M8 20h8M12 16v4M7 9h10M7 12h6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="service-short">Молниеносный запуск</p>
+                </div>
+                <div class="service-meta">03 // FUTURESPHINX</div>
+              </div>
+              <div class="service-detail">
+                <p>Проверка гипотезы в реальном бою. От проектирования архитектуры до деплоя работающего веб-сервиса на Vercel или Docker за два рабочих дня.</p>
+              </div>
+            </article>
+
+            <article class="reveal service-card tone-violet service-card--interactive" tabindex="0" aria-expanded="false">
+              <div class="service-summary">
+                <div>
+                  <div class="service-head">
+                    <h3>Дизайн и UX</h3>
+                    <span class="service-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                        <path d="M4 4h16v12H4z"></path>
+                        <path d="M8 20h8M12 16v4M7 8h10M7 11h5"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="service-short">High-End эстетика</p>
+                </div>
+                <div class="service-meta">04 // FUTURESPHINX</div>
+              </div>
+              <div class="service-detail">
+                <p>Проектирование сложных интерфейсов с акцентом на микровзаимодействия. Визуальный стиль уровня топовых мировых дизайн-студий.</p>
+              </div>
+            </article>
+
+            <article class="reveal service-card tone-cyan service-card--interactive" tabindex="0" aria-expanded="false">
+              <div class="service-summary">
+                <div>
+                  <div class="service-head">
+                    <h3>Веб-разработка</h3>
+                    <span class="service-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                        <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="service-short">Next.js и Tailwind</p>
+                </div>
+                <div class="service-meta">05 // FUTURESPHINX</div>
+              </div>
+              <div class="service-detail">
+                <p>Высокопроизводительные приложения. Чистый код, SEO-оптимизация из коробки и идеальная работа на любых устройствах.</p>
+              </div>
+            </article>
+
+            <article class="reveal service-card tone-pink service-card--interactive" tabindex="0" aria-expanded="false">
+              <div class="service-summary">
+                <div>
+                  <div class="service-head">
+                    <div class="service-title-wrap">
+                      <h3>Мобильная разработка</h3>
+                      <span class="service-badge">NEW</span>
+                    </div>
+                    <span class="service-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                        <rect x="7" y="2.5" width="10" height="19" rx="2"></rect>
+                        <path d="M10.5 5.5h3"></path>
+                        <path d="M11.2 18.5h1.6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="service-short">iOS и Android</p>
+                </div>
+                <div class="service-meta">06 // FUTURESPHINX</div>
+              </div>
+              <div class="service-detail">
+                <p>Кроссплатформенные решения на Flutter и React Native. Интеграция биометрии, пуш-уведомлений и встроенных ИИ-функций.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="why-me" class="mt-8 scroll-mt-24 md:scroll-mt-28">
+          <div class="reveal why-panel">
+            <p class="why-kicker">Почему стоит работать со мной?</p>
+            <ul class="why-list">
+              <li class="why-item">
+                <span class="why-label">Выигрыш для клиента:</span>
+                <span class="why-text">Технологический фокус и чёткая реализация. Вы получаете рабочий результат, а не бесконечный процесс.</span>
+              </li>
+              <li class="why-item">
+                <span class="why-label">Экономия времени (Time-to-Market):</span>
+                <span class="why-text">MVP за 48 часов, запуск без лишней бюрократии и быстрая проверка гипотез в реальных условиях.</span>
+              </li>
+              <li class="why-item">
+                <span class="why-label">Прозрачный контроль:</span>
+                <span class="why-text">Все этапы фиксируются в понятной дорожной карте: цели, приоритеты, сроки и измеримый результат.</span>
+              </li>
+              <li class="why-item">
+                <span class="why-label">Встроенная аналитика:</span>
+                <span class="why-text">Решения проектируются с учётом метрик роста, конверсии и удержания пользователей.</span>
+              </li>
+              <li class="why-item">
+                <span class="why-label">Масштабируемость:</span>
+                <span class="why-text">Архитектура готова к нагрузке и развитию продукта: от первого релиза до стабильного роста.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="stack" class="mt-8 scroll-mt-24 md:scroll-mt-28">
+          <h2 class="reveal text-4xl font-extrabold tracking-tight text-white">Технологический стек</h2>
+          <div class="mt-4 rounded-xl border border-white/20 bg-[#081328]/72 p-3">
+            <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+              <li class="reveal stack-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /><span>Python</span></li>
+              <li class="reveal stack-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" /><span>Docker</span></li>
+              <li class="reveal stack-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" /><span>PyTorch</span></li>
+              <li class="reveal stack-chip"><img src="./assets/openai.svg" alt="OpenAI" /><span>OpenAI</span></li>
+              <li class="reveal stack-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" /><span>SQL</span></li>
+              <li class="reveal stack-chip"><img src="https://cdn.simpleicons.org/qt/00D1FF" alt="PyQt" /><span>PyQt</span></li>
+            </ul>
+            <div class="reveal stack-note">
+              <p class="stack-note__text stack-note__text--key">
+                И это только малая часть экосистемы: подключаю <span>и многие другие технологии</span> под задачу, масштаб и бюджет проекта.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="portfolio" class="reveal mt-8 scroll-mt-24 rounded-xl border border-white/20 bg-[#081325]/75 p-6 md:scroll-mt-28">
+          <h2 class="text-4xl font-extrabold text-white">Портфолио</h2>
+          <p class="mt-3 max-w-4xl text-sm leading-relaxed text-slate-200/90 md:text-base">
+            По запросу предоставляю закрытые кейсы с архитектурой решений, этапами внедрения и измеримыми метриками:
+            скорость релиза, снижение операционных затрат и рост конверсии.
+          </p>
+        </section>
+
+        <section class="reveal mt-8 pb-2">
+          <div class="cta-center-wrap">
+            <button
+              type="button"
+              class="js-open-form cta-center-btn"
+              aria-label="Оставить заявку"
+            >
+              <span class="cta-center-btn__spark" aria-hidden="true"></span>
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+              Оставить заявку
+            </button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacts" class="mx-auto mt-4 w-full max-w-[1280px] scroll-mt-24 border-t border-white/10 px-4 py-5 text-sm text-slate-300 md:scroll-mt-28 md:px-8">
+    <div class="grid gap-3 md:grid-cols-3">
+      <p><span class="text-slate-500">Email:</span> <a class="text-electric hover:underline" href="mailto:miansokolov@gmail.com">miansokolov@gmail.com</a></p>
+      <p><span class="text-slate-500">GitHub:</span> <a class="text-electric hover:underline" href="https://github.com/Sokolkk" target="_blank" rel="noreferrer">Sokolkk</a></p>
+      <p><span class="text-slate-500">Локация:</span> По договоренности / Удаленно</p>
+    </div>
+  </footer>
+
+  <div id="leadFormModal" class="form-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="leadFormTitle">
+    <div class="form-modal__backdrop" data-close-form></div>
+    <div class="form-modal__dialog" role="document">
+      <div class="form-modal__head">
+        <h3 id="leadFormTitle">Оставить заявку</h3>
+        <button type="button" class="form-modal__close" data-close-form aria-label="Закрыть форму">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M6 6l12 12M18 6l-12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="form-modal__body">
+        <div class="form-frame-shell">
+          <iframe
+            id="leadFormFrame"
+            title="Форма заявки FutureSphinx"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
