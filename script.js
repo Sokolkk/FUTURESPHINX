@@ -1,4 +1,6 @@
 const revealItems = document.querySelectorAll(".reveal");
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyUs1-RhSnAnVu3MHnGt1LZ-CLM1V-k5OVudEaPMGj7uZDX2-lmnnBKiEK7C6rh_Eripg/exec";
 
 const revealObserver = new IntersectionObserver(
   (entries, observer) => {
@@ -17,17 +19,14 @@ const revealObserver = new IntersectionObserver(
 revealItems.forEach((item) => revealObserver.observe(item));
 
 const leadFormModal = document.getElementById("leadFormModal");
-const leadFormFrame = document.getElementById("leadFormFrame");
+const leadCaptureForm = document.getElementById("leadCaptureForm");
+const leadFormStatus = document.getElementById("leadFormStatus");
+const leadSubmitBtn = document.getElementById("leadSubmitBtn");
 const openFormButtons = document.querySelectorAll(".js-open-form");
 const closeFormTriggers = document.querySelectorAll("[data-close-form]");
-const LEAD_FORM_URL =
-  "https://docs.google.com/forms/d/1P0dNcvU47DQthmNrHhw9G24BvqxxIcordiSaCe7hW4g/viewform?embedded=true";
 
 function openLeadFormModal() {
   if (!leadFormModal) return;
-  if (leadFormFrame && !leadFormFrame.getAttribute("src")) {
-    leadFormFrame.setAttribute("src", LEAD_FORM_URL);
-  }
   leadFormModal.hidden = false;
   leadFormModal.setAttribute("aria-hidden", "false");
   document.documentElement.classList.add("modal-open");
@@ -38,6 +37,10 @@ function closeLeadFormModal() {
   leadFormModal.hidden = true;
   leadFormModal.setAttribute("aria-hidden", "true");
   document.documentElement.classList.remove("modal-open");
+  if (leadFormStatus) {
+    leadFormStatus.textContent = "";
+    leadFormStatus.className = "lead-form__status";
+  }
 }
 
 openFormButtons.forEach((btn) => {
@@ -53,6 +56,60 @@ window.addEventListener("keydown", (event) => {
     closeLeadFormModal();
   }
 });
+
+async function handleSubmit(formData) {
+  await fetch(SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify(formData)
+  });
+}
+
+if (leadCaptureForm) {
+  leadCaptureForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!leadCaptureForm.reportValidity()) return;
+
+    const form = new FormData(leadCaptureForm);
+    const payload = Object.fromEntries(form.entries());
+    payload.source = "FutureSphinx Landing";
+    payload.timestamp = new Date().toISOString();
+
+    if (leadSubmitBtn) {
+      leadSubmitBtn.disabled = true;
+      leadSubmitBtn.classList.add("is-loading");
+      leadSubmitBtn.textContent = "Отправляем...";
+    }
+
+    if (leadFormStatus) {
+      leadFormStatus.textContent = "Отправляем заявку...";
+      leadFormStatus.className = "lead-form__status is-pending";
+    }
+
+    try {
+      await handleSubmit(payload);
+      if (leadFormStatus) {
+        leadFormStatus.textContent = "Готово! Заявка отправлена.";
+        leadFormStatus.className = "lead-form__status is-success";
+      }
+      alert("Заявка улетела в FutureSphinx!");
+      leadCaptureForm.reset();
+      setTimeout(() => {
+        closeLeadFormModal();
+      }, 800);
+    } catch (error) {
+      if (leadFormStatus) {
+        leadFormStatus.textContent = "Не удалось отправить. Попробуйте еще раз.";
+        leadFormStatus.className = "lead-form__status is-error";
+      }
+    } finally {
+      if (leadSubmitBtn) {
+        leadSubmitBtn.disabled = false;
+        leadSubmitBtn.classList.remove("is-loading");
+        leadSubmitBtn.textContent = "Отправить заявку";
+      }
+    }
+  });
+}
 
 const scrollLinks = document.querySelectorAll("a.js-scroll[href^='#']");
 scrollLinks.forEach((link) => {

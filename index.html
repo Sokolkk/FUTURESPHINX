@@ -411,12 +411,54 @@
       </div>
       <div class="form-modal__body">
         <div class="form-frame-shell">
-          <iframe
-            id="leadFormFrame"
-            title="Форма заявки FutureSphinx"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <form id="leadCaptureForm" class="lead-form" novalidate>
+            <p class="lead-form__subtitle">Заполните форму — отвечу в течение 30 минут.</p>
+
+            <div class="lead-form__grid">
+              <label class="lead-field">
+                <span>Ваше имя</span>
+                <input type="text" name="name" placeholder="Например: Михаил" required />
+              </label>
+              <label class="lead-field">
+                <span>Контакт (Email / Telegram / Телефон)</span>
+                <input type="text" name="contact" placeholder="you@example.com / @username" required />
+              </label>
+            </div>
+
+            <div class="lead-form__grid">
+              <label class="lead-field">
+                <span>Компания или проект</span>
+                <input type="text" name="project" placeholder="Название компании или ссылка" />
+              </label>
+              <label class="lead-field">
+                <span>Тип задачи</span>
+                <select name="taskType">
+                  <option value="ИИ-агенты">ИИ-агенты</option>
+                  <option value="Voice Tech">Voice Tech</option>
+                  <option value="MVP за 48 часов">MVP за 48 часов</option>
+                  <option value="Автоматизация">Автоматизация</option>
+                  <option value="Другое">Другое</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="lead-field">
+              <span>Кратко о задаче</span>
+              <textarea name="message" rows="4" placeholder="Что нужно запустить и в какие сроки?" required></textarea>
+            </label>
+
+            <label class="lead-consent">
+              <input type="checkbox" name="consent" required />
+              <span>Согласен на обработку данных для обратной связи.</span>
+            </label>
+
+            <div class="lead-form__actions">
+              <button id="leadSubmitBtn" type="submit" class="lead-submit-btn">
+                Отправить заявку
+              </button>
+              <p id="leadFormStatus" class="lead-form__status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
