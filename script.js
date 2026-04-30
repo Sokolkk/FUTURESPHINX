@@ -275,3 +275,86 @@ faqItems.forEach((item) => {
     });
   });
 });
+
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const growthSection = document.getElementById("growth");
+const metricNodes = Array.from(document.querySelectorAll(".metric-value"));
+
+function animateMetricValue(node, target, { prefix = "", suffix = "", sign = "" } = {}) {
+  if (!node) return;
+  if (reducedMotion) {
+    const finalSign = sign ? sign : target < 0 ? "-" : "";
+    node.textContent = `${finalSign}${prefix}${Math.abs(Math.round(target))}${suffix}`;
+    return;
+  }
+
+  const start = performance.now();
+  const duration = 1300;
+  const from = 0;
+  const to = Math.abs(target);
+  const fixedSign = sign ? sign : target < 0 ? "-" : "";
+
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = Math.round(from + (to - from) * eased);
+    node.textContent = `${fixedSign}${prefix}${val}${suffix}`;
+    if (p < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+if (growthSection && metricNodes.length >= 3) {
+  const metricObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateMetricValue(metricNodes[0], -37, { suffix: "%" });
+        animateMetricValue(metricNodes[1], 2, { prefix: "x" });
+        animateMetricValue(metricNodes[2], 28, { sign: "+", suffix: "%" });
+        observer.disconnect();
+      });
+    },
+    { threshold: 0.35 }
+  );
+  metricObserver.observe(growthSection);
+}
+
+const premiumCards = Array.from(
+  document.querySelectorAll(
+    ".metric-card, .offer-card, .roi-card, .proof-card, .ba-card, .process-grid li, .trust-points span"
+  )
+);
+
+if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  premiumCards.forEach((card) => {
+    card.addEventListener("mousemove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width;
+      const py = (event.clientY - rect.top) / rect.height;
+      const rx = (0.5 - py) * 5.2;
+      const ry = (px - 0.5) * 6.4;
+      card.style.transform = `perspective(720px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+  });
+}
+
+const roiResult = document.querySelector(".roi-result");
+if (roiResult) {
+  let roiFlashTimer = null;
+  [roiRevenueInput, roiLeadsInput, roiCostsInput].forEach((input) => {
+    if (!input) return;
+    input.addEventListener("input", () => {
+      roiResult.classList.add("is-flash");
+      clearTimeout(roiFlashTimer);
+      roiFlashTimer = setTimeout(() => {
+        roiResult.classList.remove("is-flash");
+      }, 260);
+    });
+  });
+}
