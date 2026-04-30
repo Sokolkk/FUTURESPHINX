@@ -1577,6 +1577,28 @@ body {
   box-shadow: 0 0 0 3px rgba(0, 209, 255, 0.14), 0 0 18px rgba(0, 209, 255, 0.18);
 }
 
+.lead-field__error {
+  margin: 0.28rem 0 0;
+  color: #ff8dad;
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.35;
+  min-height: 1.02rem;
+  text-shadow: 0 0 8px rgba(255, 70, 125, 0.28);
+}
+
+.lead-field.is-invalid input,
+.lead-field.is-invalid select,
+.lead-field.is-invalid textarea,
+.lead-field input.is-invalid,
+.lead-field select.is-invalid,
+.lead-field textarea.is-invalid {
+  border-color: rgba(255, 84, 138, 0.88);
+  box-shadow:
+    0 0 0 2px rgba(255, 84, 138, 0.2),
+    0 0 18px rgba(255, 84, 138, 0.22);
+}
+
 .lead-consent {
   display: flex;
   align-items: flex-start;
@@ -1589,6 +1611,12 @@ body {
 .lead-consent input {
   margin-top: 0.06rem;
   accent-color: #00d1ff;
+}
+
+.lead-consent.is-invalid {
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 84, 138, 0.64);
+  padding: 0.24rem 0.3rem;
 }
 
 .lead-consent-details {

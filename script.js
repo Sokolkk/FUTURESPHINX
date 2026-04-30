@@ -24,6 +24,7 @@ const leadFormStatus = document.getElementById("leadFormStatus");
 const leadSubmitBtn = document.getElementById("leadSubmitBtn");
 const leadContactInput = document.getElementById("leadContactInput");
 const leadMessageInput = document.getElementById("leadMessageInput");
+const leadConsentInput = document.getElementById("leadConsentInput");
 const openFormButtons = document.querySelectorAll(".js-open-form");
 const closeFormTriggers = document.querySelectorAll("[data-close-form]");
 
@@ -51,6 +52,14 @@ function closeLeadFormModal() {
     if (leadFormStatus) {
       leadFormStatus.textContent = "";
       leadFormStatus.className = "lead-form__status";
+    }
+    if (leadCaptureForm) {
+      leadCaptureForm.querySelectorAll(".is-invalid").forEach((node) => {
+        node.classList.remove("is-invalid");
+      });
+      leadCaptureForm.querySelectorAll(".lead-field__error").forEach((node) => {
+        node.textContent = "";
+      });
     }
   };
 
@@ -172,6 +181,99 @@ if (leadCaptureForm) {
       }
     }
   });
+}
+
+if (leadCaptureForm) {
+  const leadNameInput = leadCaptureForm.querySelector('input[name="name"]');
+  const leadTaskTypeInput = leadCaptureForm.querySelector('select[name="taskType"]');
+  const trackedValidationFields = [
+    leadNameInput,
+    leadContactInput,
+    leadTaskTypeInput,
+    leadMessageInput,
+    leadConsentInput
+  ].filter(Boolean);
+
+  function ensureInlineErrorNode(field) {
+    const wrapper = field.closest(".lead-field, .lead-consent");
+    if (!wrapper) return null;
+    let node = wrapper.querySelector(".lead-field__error");
+    if (!node) {
+      node = document.createElement("p");
+      node.className = "lead-field__error";
+      node.setAttribute("aria-live", "polite");
+      wrapper.appendChild(node);
+    }
+    return node;
+  }
+
+  function setInlineError(field, message) {
+    const wrapper = field.closest(".lead-field, .lead-consent");
+    const node = ensureInlineErrorNode(field);
+    const invalid = Boolean(message);
+    field.classList.toggle("is-invalid", invalid);
+    field.setAttribute("aria-invalid", invalid ? "true" : "false");
+    if (wrapper) wrapper.classList.toggle("is-invalid", invalid);
+    if (node) node.textContent = message || "";
+  }
+
+  function validateFieldWithHint(field) {
+    if (!field) return true;
+    let message = "";
+
+    if (field === leadNameInput) {
+      const value = field.value.trim();
+      if (!value) message = "Укажите имя.";
+      else if (value.length < 2) message = "Имя должно быть не короче 2 символов.";
+    } else if (field === leadTaskTypeInput) {
+      if (!field.value.trim()) message = "Выберите тип задачи.";
+    } else if (field === leadConsentInput) {
+      if (!field.checked) message = "Подтвердите согласие на обработку персональных данных.";
+    } else if (field === leadContactInput || field === leadMessageInput) {
+      if (!field.checkValidity()) message = field.validationMessage || "Проверьте поле.";
+    } else if (!field.checkValidity()) {
+      message = field.validationMessage || "Проверьте поле.";
+    }
+
+    setInlineError(field, message);
+    return !message;
+  }
+
+  function clearInlineErrors() {
+    trackedValidationFields.forEach((field) => setInlineError(field, ""));
+  }
+
+  const submitValidationHandler = (event) => {
+    let firstInvalidField = null;
+    trackedValidationFields.forEach((field) => {
+      const ok = validateFieldWithHint(field);
+      if (!ok && !firstInvalidField) firstInvalidField = field;
+    });
+
+    if (firstInvalidField) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      firstInvalidField.focus({ preventScroll: false });
+      if (leadFormStatus) {
+        leadFormStatus.textContent = "Проверьте поля формы: есть ошибки.";
+        leadFormStatus.className = "lead-form__status is-error";
+      }
+      return;
+    }
+  };
+
+  leadCaptureForm.addEventListener("submit", submitValidationHandler, true);
+
+  trackedValidationFields.forEach((field) => {
+    const ev = field === leadTaskTypeInput || field === leadConsentInput ? "change" : "input";
+    field.addEventListener(ev, () => validateFieldWithHint(field));
+  });
+
+  if (leadFormModal) {
+    leadFormModal.addEventListener("transitionend", () => {
+      if (leadFormModal.hidden) clearInlineErrors();
+    });
+  }
 }
 
 const scrollLinks = document.querySelectorAll("a.js-scroll[href^='#']");
