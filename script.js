@@ -185,3 +185,93 @@ if (canvas) {
   resize();
   requestAnimationFrame(render);
 }
+
+const offerPills = Array.from(document.querySelectorAll(".offer-pill"));
+const offerText = document.getElementById("offerText");
+
+const offerMap = {
+  startup:
+    "Фокус на молниеносном MVP: собираем ключевую функциональность, запускаем тест на рынке и докручиваем продукт по метрикам.",
+  ecom:
+    "Фокус на росте продаж: ускоряем обработку заказов, внедряем персонализацию и автоматизируем маркетинговые сценарии с понятным ROI.",
+  b2b:
+    "Фокус на воронке и операционной эффективности: объединяем CRM, автоматизируем лидогенерацию и повышаем скорость работы команды."
+};
+
+function updateOffer(nextOffer) {
+  if (!offerText || !offerMap[nextOffer]) return;
+  offerText.textContent = offerMap[nextOffer];
+  offerPills.forEach((pill) => {
+    const isActive = pill.dataset.offer === nextOffer;
+    pill.classList.toggle("is-active", isActive);
+    pill.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+}
+
+offerPills.forEach((pill) => {
+  pill.addEventListener("click", () => {
+    updateOffer(pill.dataset.offer);
+  });
+});
+
+if (offerPills.length) {
+  updateOffer("startup");
+}
+
+const roiRevenueInput = document.getElementById("roiRevenue");
+const roiLeadsInput = document.getElementById("roiLeads");
+const roiCostsInput = document.getElementById("roiCosts");
+const roiSavings = document.getElementById("roiSavings");
+const roiExtraLeads = document.getElementById("roiExtraLeads");
+const roiExtraRevenue = document.getElementById("roiExtraRevenue");
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat("ru-RU", {
+    style: "currency",
+    currency: "RUB",
+    maximumFractionDigits: 0
+  }).format(Math.max(0, value));
+}
+
+function calculateRoi() {
+  if (
+    !roiRevenueInput ||
+    !roiLeadsInput ||
+    !roiCostsInput ||
+    !roiSavings ||
+    !roiExtraLeads ||
+    !roiExtraRevenue
+  ) {
+    return;
+  }
+
+  const revenue = Number(roiRevenueInput.value) || 0;
+  const leads = Math.max(1, Number(roiLeadsInput.value) || 0);
+  const costs = Number(roiCostsInput.value) || 0;
+
+  const savings = costs * 0.37;
+  const extraLeads = Math.round(leads * 0.28);
+  const leadValue = revenue / leads;
+  const extraRevenue = extraLeads * leadValue * 0.72;
+
+  roiSavings.textContent = formatCurrency(savings);
+  roiExtraLeads.textContent = new Intl.NumberFormat("ru-RU").format(extraLeads);
+  roiExtraRevenue.textContent = formatCurrency(extraRevenue);
+}
+
+[roiRevenueInput, roiLeadsInput, roiCostsInput].forEach((input) => {
+  if (!input) return;
+  input.addEventListener("input", calculateRoi);
+});
+
+calculateRoi();
+
+const faqItems = Array.from(document.querySelectorAll(".faq-item"));
+faqItems.forEach((item) => {
+  item.addEventListener("toggle", () => {
+    if (!item.open) return;
+    faqItems.forEach((other) => {
+      if (other !== item) other.open = false;
+    });
+  });
+});
