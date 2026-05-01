@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон -->
+  <rect width="32" height="32" rx="6" fill="#000000"/>
+  <!-- Стилизованный Сфинкс -->
+  <path d="M8 22L12 10H20L24 22H21L20 18H12L11 22H8Z" stroke="#00D1FF" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M14 10V8C14 6.89543 14.8954 6 16 6C17.1046 6 18 6.89543 18 8V10" stroke="#00D1FF" stroke-width="1.5"/>
+  <path d="M12 14H20" stroke="#00D1FF" stroke-width="1" stroke-dasharray="2 2"/>
+  <!-- Линии тех-лаборатории -->
+  <circle cx="16" cy="14" r="1.5" fill="#00D1FF"/>
+</svg>
