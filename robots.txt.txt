@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Указываем путь к карте сайта для ускорения индексации
+Sitemap: https://futuresphinx.ru/sitemap.xml
