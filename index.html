@@ -22,7 +22,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles_v2.css" />
 </head>
 <body class="bg-[#04070f] text-slate-100 antialiased">
   <div class="ambient ambient-a"></div>
@@ -34,7 +34,8 @@
   </div>
 
   <main class="mx-auto w-full max-w-[1280px] px-4 py-6 md:px-8 md:py-10">
-    <section class="lab-shell reveal rounded-[14px] border border-white/15">
+    <!-- Исправлено: Удален класс reveal, который блокировал видимость всей секции на мобильных -->
+    <section class="lab-shell rounded-[14px] border border-white/15">
       <canvas id="fxCanvas" class="pointer-events-none absolute inset-0 z-[1]"></canvas>
       <div class="lab-bg absolute inset-0 z-0"></div>
 
@@ -81,138 +82,6 @@
           <p class="cta-hint mt-3">Без предоплаты за консультацию — аудит и дорожная карта за 20 минут</p>
         </section>
 
-        <section id="services-legacy" class="hidden mt-10 scroll-mt-24 md:scroll-mt-28">
-          <h2 class="reveal text-4xl font-extrabold tracking-tight text-white">Ключевые услуги</h2>
-          <div class="service-grid mt-5">
-            <article class="reveal service-card tone-cyan service-card--interactive" tabindex="0" aria-expanded="false">
-              <div class="service-summary">
-                <div>
-                  <div class="service-head">
-                    <h3>ИИ-агенты</h3>
-                    <span class="service-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-                        <path d="M12 3a3 3 0 0 0-3 3v1H8a3 3 0 0 0-3 3v1h1a3 3 0 0 0 3 3h1v1a3 3 0 0 0 3 3h1v-1a3 3 0 0 0 3-3v-1h1a3 3 0 0 0 3-3v-1h-1a3 3 0 0 0-3-3h-1V6a3 3 0 0 0-3-3h-1z"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <p class="service-short">Интеграция кастомных LLM</p>
-                </div>
-                <div class="service-meta">01 // FUTURESPHINX</div>
-              </div>
-              <div class="service-detail">
-                <p>Разработка автономных агентов на базе GPT-4o и Claude 3.5. Автоматизация техподдержки, холодного поиска и глубокой аналитики данных без участия человека.</p>
-              </div>
-            </article>
-
-            <article class="reveal service-card tone-violet service-card--interactive" tabindex="0" aria-expanded="false">
-              <div class="service-summary">
-                <div>
-                  <div class="service-head">
-                    <h3>Voice Tech</h3>
-                    <span class="service-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-                        <path d="M4 12h2M8 9v6M12 6v12M16 9v6M20 11v2"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <p class="service-short">Синтез и клонирование</p>
-                </div>
-                <div class="service-meta">02 // FUTURESPHINX</div>
-              </div>
-              <div class="service-detail">
-                <p>Создание цифровых двойников голоса с сохранением интонаций. Интеграция в IVR-системы и создание контента для YouTube и TikTok со студийным качеством.</p>
-              </div>
-            </article>
-
-            <article class="reveal service-card tone-pink service-card--interactive" tabindex="0" aria-expanded="false">
-              <div class="service-summary">
-                <div>
-                  <div class="service-head">
-                    <h3>MVP за 48 часов</h3>
-                    <span class="service-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-                        <path d="M4 4h16v12H4z"></path>
-                        <path d="M8 20h8M12 16v4M7 9h10M7 12h6"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <p class="service-short">Молниеносный запуск</p>
-                </div>
-                <div class="service-meta">03 // FUTURESPHINX</div>
-              </div>
-              <div class="service-detail">
-                <p>Проверка гипотезы в реальном бою. От проектирования архитектуры до деплоя работающего веб-сервиса на Vercel или Docker за два рабочих дня.</p>
-              </div>
-            </article>
-
-            <article class="reveal service-card tone-violet service-card--interactive" tabindex="0" aria-expanded="false">
-              <div class="service-summary">
-                <div>
-                  <div class="service-head">
-                    <h3>Дизайн и UX</h3>
-                    <span class="service-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-                        <path d="M4 4h16v12H4z"></path>
-                        <path d="M8 20h8M12 16v4M7 8h10M7 11h5"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <p class="service-short">High-End эстетика</p>
-                </div>
-                <div class="service-meta">04 // FUTURESPHINX</div>
-              </div>
-              <div class="service-detail">
-                <p>Проектирование сложных интерфейсов с акцентом на микровзаимодействия. Визуальный стиль уровня топовых мировых дизайн-студий.</p>
-              </div>
-            </article>
-
-            <article class="reveal service-card tone-cyan service-card--interactive" tabindex="0" aria-expanded="false">
-              <div class="service-summary">
-                <div>
-                  <div class="service-head">
-                    <h3>Веб-разработка</h3>
-                    <span class="service-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-                        <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <p class="service-short">Next.js и Tailwind</p>
-                </div>
-                <div class="service-meta">05 // FUTURESPHINX</div>
-              </div>
-              <div class="service-detail">
-                <p>Высокопроизводительные приложения. Чистый код, SEO-оптимизация из коробки и идеальная работа на любых устройствах.</p>
-              </div>
-            </article>
-
-            <article class="reveal service-card tone-pink service-card--interactive" tabindex="0" aria-expanded="false">
-              <div class="service-summary">
-                <div>
-                  <div class="service-head">
-                    <div class="service-title-wrap">
-                      <h3>Мобильная разработка</h3>
-                      <span class="service-badge">NEW</span>
-                    </div>
-                    <span class="service-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
-                        <rect x="7" y="2.5" width="10" height="19" rx="2"></rect>
-                        <path d="M10.5 5.5h3"></path>
-                        <path d="M11.2 18.5h1.6"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <p class="service-short">iOS и Android</p>
-                </div>
-                <div class="service-meta">06 // FUTURESPHINX</div>
-              </div>
-              <div class="service-detail">
-                <p>Кроссплатформенные решения на Flutter и React Native. Интеграция биометрии, пуш-уведомлений и встроенных ИИ-функций.</p>
-              </div>
-            </article>
-          </div>
-        </section>
-
         <section id="services" class="mt-14 scroll-mt-24 md:mt-20 md:scroll-mt-28">
           <div class="reveal flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -233,7 +102,6 @@
                 <li>• Голосовые интерфейсы и TTS</li>
                 <li>• Внедрение искусственного<br>
                    интеллекта в ваш бизнес</li>
-
               </ul>
             </article>
 
@@ -244,7 +112,6 @@
                 <li>• MVP за 48 часов</li>
                 <li>• Web + Mobile delivery</li>
                 <li>• Создание интеграций <br>с мессенджерами Telergram, MAX</li>
-
               </ul>
             </article>
 
@@ -255,37 +122,8 @@
                 <li>• Прототипирование и UX-аудит</li>
                 <li>• High-end UI и микроанимации</li>
                 <li>• Стильный интерактивный дизайн, <br>ориентированный на вовлеченность</li>
-
               </ul>
             </article>
-          </div>
-        </section>
-
-        <section id="why-me-legacy" class="hidden mt-8 scroll-mt-24 md:scroll-mt-28">
-          <div class="reveal why-panel">
-            <p class="why-kicker">Почему стоит работать со мной?</p>
-            <ul class="why-list">
-              <li class="why-item">
-                <span class="why-label">Выигрыш для клиента:</span>
-                <span class="why-text">Технологический фокус и чёткая реализация. Вы получаете рабочий результат, а не бесконечный процесс.</span>
-              </li>
-              <li class="why-item">
-                <span class="why-label">Экономия времени (Time-to-Market):</span>
-                <span class="why-text">MVP за 48 часов, запуск без лишней бюрократии и быстрая проверка гипотез в реальных условиях.</span>
-              </li>
-              <li class="why-item">
-                <span class="why-label">Прозрачный контроль:</span>
-                <span class="why-text">Все этапы фиксируются в понятной дорожной карте: цели, приоритеты, сроки и измеримый результат.</span>
-              </li>
-              <li class="why-item">
-                <span class="why-label">Встроенная аналитика:</span>
-                <span class="why-text">Решения проектируются с учётом метрик роста, конверсии и удержания пользователей.</span>
-              </li>
-              <li class="why-item">
-                <span class="why-label">Масштабируемость:</span>
-                <span class="why-text">Архитектура готова к нагрузке и развитию продукта: от первого релиза до стабильного роста.</span>
-              </li>
-            </ul>
           </div>
         </section>
 
@@ -326,14 +164,6 @@
               </p>
             </div>
           </div>
-        </section>
-
-        <section id="portfolio" class="reveal mt-14 scroll-mt-24 rounded-xl border border-white/20 bg-[#081325]/75 p-6 md:mt-20 md:scroll-mt-28">
-          <h2 class="text-4xl font-extrabold text-white">Портфолио</h2>
-          <p class="mt-3 max-w-4xl text-sm leading-relaxed text-slate-200/90 md:text-base">
-            По запросу предоставляю закрытые кейсы с архитектурой решений, этапами внедрения и измеримыми метриками:
-            скорость релиза, снижение операционных затрат и рост конверсии.
-          </p>
         </section>
 
         <section id="growth" class="mt-14 scroll-mt-24 md:mt-20 md:scroll-mt-28">
@@ -382,108 +212,6 @@
               </details>
             </div>
           </div>
-        </section>
-
-        <section id="growth-legacy" class="hidden mt-8 scroll-mt-24 md:scroll-mt-28">
-          <div class="reveal premium-shell">
-            <div class="premium-head">
-              <p class="premium-kicker">Growth Engine</p>
-              <h2 class="premium-title">Показатели, процесс и гарантии запуска</h2>
-              <p class="premium-subtitle">Все, что нужно для решения о запуске: выгода, сроки, процесс и прозрачность на каждом этапе.</p>
-            </div>
-
-            <div class="mini-cases">
-              <article class="metric-card"><p class="metric-value">-37%</p><p class="metric-label">операционных затрат</p></article>
-              <article class="metric-card"><p class="metric-value">x2</p><p class="metric-label">скорость запуска</p></article>
-              <article class="metric-card"><p class="metric-value">+28%</p><p class="metric-label">прирост лидов</p></article>
-            </div>
-
-            <div class="offer-grid">
-              <article class="offer-card">
-                <h3>Легкая персонализация</h3>
-                <p class="offer-copy">Выберите сценарий, и я сразу подсвечу приоритет запуска.</p>
-                <div class="offer-switch" role="tablist" aria-label="Тип бизнеса">
-                  <button type="button" class="offer-pill is-active" data-offer="startup">Для стартапа</button>
-                  <button type="button" class="offer-pill" data-offer="ecom">Для eCom</button>
-                  <button type="button" class="offer-pill" data-offer="b2b">Для B2B</button>
-                </div>
-                <div id="offerBox" class="offer-box">
-                  <p id="offerText" class="offer-text">Фокус на молниеносном MVP: собираем ключевую функциональность, запускаем тест на рынке и докручиваем продукт по метрикам.</p>
-                </div>
-              </article>
-
-              <article class="roi-card">
-                <h3>ROI-калькулятор</h3>
-                <p class="offer-copy">Введите 3 параметра и сразу оцените потенциал эффекта.</p>
-                <div class="roi-form">
-                  <label class="roi-field"><span>Оборот в месяц, ₽</span><input id="roiRevenue" type="number" min="100000" step="10000" value="2500000" /></label>
-                  <label class="roi-field"><span>Текущие лиды/мес.</span><input id="roiLeads" type="number" min="10" step="10" value="320" /></label>
-                  <label class="roi-field"><span>Операционные расходы, ₽/мес.</span><input id="roiCosts" type="number" min="50000" step="5000" value="780000" /></label>
-                </div>
-                <div class="roi-result">
-                  <p>Экономия: <strong id="roiSavings">0 ₽</strong></p>
-                  <p>Доп. лиды: <strong id="roiExtraLeads">0</strong></p>
-                  <p>Доп. выручка: <strong id="roiExtraRevenue">0 ₽</strong></p>
-                </div>
-              </article>
-            </div>
-
-            <div class="proof-grid">
-              <article class="proof-card">
-                <h3>Социальное доказательство</h3>
-                <p>Нам доверили <strong>47 проектов</strong> в нишах: SaaS, FinTech, eCom, MedTech и B2B-сервисы.</p>
-                <div class="logo-cloud"><span>FINTECH</span><span>ECOM</span><span>B2B SAAS</span><span>EDTECH</span><span>LOGISTICS</span><span>MEDIA</span></div>
-                <blockquote>«После внедрения агентов мы сократили время обработки заявок в 2.3 раза и сняли пиковую нагрузку с команды продаж».</blockquote>
-              </article>
-
-              <article class="proof-card">
-                <h3>SLA и скорость реакции</h3>
-                <div class="sla-list">
-                  <div class="sla-item"><p class="sla-value">30 мин</p><p class="sla-label">максимум до первого ответа</p></div>
-                  <div class="sla-item"><p class="sla-value">48 часов</p><p class="sla-label">до первого прототипа</p></div>
-                  <div class="sla-item"><p class="sla-value">7 дней</p><p class="sla-label">до первой измеримой метрики</p></div>
-                </div>
-              </article>
-            </div>
-
-            <div class="before-after">
-              <article class="ba-card"><h3>Обработка заявок</h3><p><span>До:</span> 18-24 часа до ответа клиенту.</p><p><span>После:</span> 2-4 часа через автоматизацию и агентов.</p></article>
-              <article class="ba-card"><h3>Разработка MVP</h3><p><span>До:</span> 4-6 недель до первой версии.</p><p><span>После:</span> 48 часов до прототипа и теста гипотезы.</p></article>
-              <article class="ba-card"><h3>Аналитика и рост</h3><p><span>До:</span> решения интуитивно, без единой метрики.</p><p><span>После:</span> дашборды, воронка и приоритеты по ROI.</p></article>
-            </div>
-
-            <section class="process-block">
-              <h3>Процесс в 4 шага</h3>
-              <ol class="process-grid">
-                <li><p class="step-title">Бриф</p><p class="step-time">0.5 дня</p></li>
-                <li><p class="step-title">Архитектура</p><p class="step-time">1 день</p></li>
-                <li><p class="step-title">Запуск</p><p class="step-time">2 дня</p></li>
-                <li><p class="step-title">Масштаб</p><p class="step-time">непрерывно</p></li>
-              </ol>
-            </section>
-
-            <section class="trust-block">
-              <h3>Качество и надежность</h3>
-              <div class="trust-points">
-                <span>Автотесты и code review</span>
-                <span>Мониторинг и алертинг 24/7</span>
-                <span>Сквозная аналитика</span>
-                <span>Техническая документация</span>
-                <span>Безопасность и права на код заказчика</span>
-              </div>
-            </section>
-
-            <section id="faq" class="faq-block">
-              <h3>FAQ</h3>
-              <div class="faq-list">
-                <details class="faq-item"><summary>Какие реальные сроки запуска?</summary><p>Первый прототип обычно за 48 часов, боевой запуск зависит от сценария и интеграций.</p></details>
-                <details class="faq-item"><summary>Как формируется стоимость?</summary><p>Стоимость привязана к объему задач, срочности и количеству интеграций; оценку даю после брифа.</p></details>
-                <details class="faq-item"><summary>Есть ли поддержка после релиза?</summary><p>Да, могу вести продукт по SLA: мониторинг, обновления, гипотезы роста и оптимизация.</p></details>
-                <details class="faq-item"><summary>Кому принадлежат права на код?</summary><p>Все исходники и документация передаются заказчику по договору.</p></details>
-              </div>
-            </section>
-          </div>
-          <p class="cta-hint cta-hint--center">Консультация без предоплаты. Старт с быстрого аудита и дорожной карты.</p>
         </section>
 
         <section class="reveal mt-14 pb-2 md:mt-20">
@@ -609,6 +337,6 @@
     </div>
   </div>
 
-  <script src="./script.js"></script>
+  <script src="./script_v2.js"></script>
 </body>
 </html>
