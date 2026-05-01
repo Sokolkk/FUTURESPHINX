@@ -81,7 +81,7 @@
           <p class="cta-hint mt-3">Без предоплаты за консультацию — аудит и дорожная карта за 20 минут</p>
         </section>
 
-        <section id="services" class="mt-10 scroll-mt-24 md:scroll-mt-28">
+        <section id="services-legacy" class="hidden mt-10 scroll-mt-24 md:scroll-mt-28">
           <h2 class="reveal text-4xl font-extrabold tracking-tight text-white">Ключевые услуги</h2>
           <div class="service-grid mt-5">
             <article class="reveal service-card tone-cyan service-card--interactive" tabindex="0" aria-expanded="false">
@@ -213,7 +213,55 @@
           </div>
         </section>
 
-        <section id="why-me" class="mt-8 scroll-mt-24 md:scroll-mt-28">
+        <section id="services" class="mt-14 scroll-mt-24 md:mt-20 md:scroll-mt-28">
+          <div class="reveal flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-electric/80">Core Expertise</p>
+              <h2 class="mt-2 text-4xl font-extrabold tracking-tight text-white">Ключевые услуги</h2>
+            </div>
+            <p class="max-w-2xl text-sm text-slate-300 md:text-base">
+              Вместо перегруженной витрины — три понятных направления, которые закрывают запуск, рост и качество продукта.
+            </p>
+          </div>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-3">
+            <article class="reveal rounded-xl border border-cyan-300/35 bg-[linear-gradient(150deg,rgba(8,20,45,0.92),rgba(6,14,30,0.88))] p-5 shadow-[0_0_0_1px_rgba(0,209,255,0.14),0_18px_30px_rgba(0,0,0,0.3)]">
+              <h3 class="text-2xl font-extrabold text-white">Решения на базе ИИ</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-200/90">ИИ-агенты, Voice Tech, автоматизация диалогов и процессов под измеримые KPI.</p>
+              <ul class="mt-4 space-y-2 text-sm text-cyan-200/90">
+                <li>• LLM-интеграции и ассистенты</li>
+                <li>• Голосовые интерфейсы и TTS</li>
+                <li>• Внедрение искусственного<br>
+                   интеллекта в ваш бизнес</li>
+
+              </ul>
+            </article>
+
+            <article class="reveal rounded-xl border border-violet-300/35 bg-[linear-gradient(150deg,rgba(12,18,44,0.92),rgba(7,14,34,0.88))] p-5 shadow-[0_0_0_1px_rgba(125,97,255,0.16),0_18px_30px_rgba(0,0,0,0.3)]">
+              <h3 class="text-2xl font-extrabold text-white">Ядро разработки</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-200/90">MVP, веб и мобильные продукты: от архитектуры до первого релиза в короткие сроки.</p>
+              <ul class="mt-4 space-y-2 text-sm text-violet-200/90">
+                <li>• MVP за 48 часов</li>
+                <li>• Web + Mobile delivery</li>
+                <li>• Создание интеграций <br>с мессенджерами Telergram, MAX</li>
+
+              </ul>
+            </article>
+
+            <article class="reveal rounded-xl border border-fuchsia-300/35 bg-[linear-gradient(150deg,rgba(18,17,42,0.92),rgba(9,14,33,0.88))] p-5 shadow-[0_0_0_1px_rgba(255,92,171,0.16),0_18px_30px_rgba(0,0,0,0.3)]">
+              <h3 class="text-2xl font-extrabold text-white">Дизайн и UX</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-200/90">Премиальные интерфейсы и продуктовая логика, которые усиливают конверсию и удержание.</p>
+              <ul class="mt-4 space-y-2 text-sm text-fuchsia-200/90">
+                <li>• Прототипирование и UX-аудит</li>
+                <li>• High-end UI и микроанимации</li>
+                <li>• Стильный интерактивный дизайн, <br>ориентированный на вовлеченность</li>
+
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="why-me-legacy" class="hidden mt-8 scroll-mt-24 md:scroll-mt-28">
           <div class="reveal why-panel">
             <p class="why-kicker">Почему стоит работать со мной?</p>
             <ul class="why-list">
@@ -241,7 +289,27 @@
           </div>
         </section>
 
-        <section id="stack" class="mt-8 scroll-mt-24 md:scroll-mt-28">
+        <section id="why-me" class="mt-14 scroll-mt-24 md:mt-20 md:scroll-mt-28">
+          <div class="reveal rounded-xl border border-white/20 bg-[linear-gradient(152deg,rgba(8,19,39,0.9),rgba(6,13,30,0.86))] p-5 md:p-7">
+            <h2 class="text-3xl font-extrabold text-white md:text-4xl">Почему со мной работают</h2>
+            <div class="mt-5 grid gap-3 md:grid-cols-3">
+              <article class="rounded-lg border border-cyan-300/30 bg-[#08152f]/75 p-4">
+                <h3 class="text-lg font-bold text-cyan-200">Скорость запуска</h3>
+                <p class="mt-2 text-sm text-slate-200/90">MVP за 48 часов и быстрая проверка гипотез в боевых условиях.</p>
+              </article>
+              <article class="rounded-lg border border-violet-300/30 bg-[#101533]/75 p-4">
+                <h3 class="text-lg font-bold text-violet-200">Дата-центричный подход</h3>
+                <p class="mt-2 text-sm text-slate-200/90">Проектирую на базе метрик, а не предположений.</p>
+              </article>
+              <article class="rounded-lg border border-fuchsia-300/30 bg-[#15142f]/75 p-4">
+                <h3 class="text-lg font-bold text-fuchsia-200">Прозрачный результат</h3>
+                <p class="mt-2 text-sm text-slate-200/90">Четкий план, контроль этапов и измеримая бизнес-выгода.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="stack" class="mt-14 scroll-mt-24 md:mt-20 md:scroll-mt-28">
           <h2 class="reveal text-4xl font-extrabold tracking-tight text-white">Технологический стек</h2>
           <div class="mt-4 rounded-xl border border-white/20 bg-[#081328]/72 p-3">
             <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
@@ -260,7 +328,7 @@
           </div>
         </section>
 
-        <section id="portfolio" class="reveal mt-8 scroll-mt-24 rounded-xl border border-white/20 bg-[#081325]/75 p-6 md:scroll-mt-28">
+        <section id="portfolio" class="reveal mt-14 scroll-mt-24 rounded-xl border border-white/20 bg-[#081325]/75 p-6 md:mt-20 md:scroll-mt-28">
           <h2 class="text-4xl font-extrabold text-white">Портфолио</h2>
           <p class="mt-3 max-w-4xl text-sm leading-relaxed text-slate-200/90 md:text-base">
             По запросу предоставляю закрытые кейсы с архитектурой решений, этапами внедрения и измеримыми метриками:
@@ -268,7 +336,55 @@
           </p>
         </section>
 
-        <section id="growth" class="mt-8 scroll-mt-24 md:scroll-mt-28">
+        <section id="growth" class="mt-14 scroll-mt-24 md:mt-20 md:scroll-mt-28">
+          <div class="reveal">
+            <h2 class="text-3xl font-extrabold text-white md:text-4xl">Показатели успеха</h2>
+            <div class="mt-5 grid gap-4 md:grid-cols-3">
+              <article class="metric-card">
+                <p class="metric-value">-37%</p>
+                <p class="metric-label">снижение операционных затрат</p>
+              </article>
+              <article class="metric-card">
+                <p class="metric-value">x2</p>
+                <p class="metric-label">ускорение запуска продукта</p>
+              </article>
+              <article class="metric-card">
+                <p class="metric-value">+28%</p>
+                <p class="metric-label">рост входящих лидов</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="reveal mt-10 rounded-xl border border-white/20 bg-[linear-gradient(152deg,rgba(8,18,40,0.9),rgba(7,13,30,0.86))] p-5 md:p-7">
+            <h3 class="text-2xl font-extrabold text-white">Процесс в 4 шага</h3>
+            <ol class="process-grid mt-4">
+              <li><p class="step-title">Бриф</p><p class="step-time">30 минут</p></li>
+              <li><p class="step-title">Архитектура</p><p class="step-time">1 день</p></li>
+              <li><p class="step-title">Запуск</p><p class="step-time">48 часов</p></li>
+              <li><p class="step-title">Масштаб</p><p class="step-time">по метрикам</p></li>
+            </ol>
+          </div>
+
+          <div class="reveal mt-10 rounded-xl border border-white/20 bg-[linear-gradient(152deg,rgba(8,18,38,0.9),rgba(7,13,28,0.86))] p-5 md:p-7">
+            <h3 class="text-2xl font-extrabold text-white">FAQ и гарантии</h3>
+            <div class="faq-list mt-4">
+              <details class="faq-item">
+                <summary>Когда получу первый результат?</summary>
+                <p>Первый прототип обычно в течение 48 часов после брифа и согласования сценария.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Как формируется стоимость?</summary>
+                <p>Стоимость зависит от объема задач и интеграций. Смету даю после короткого аудита.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Кому принадлежит код и документация?</summary>
+                <p>Все исходники, доступы и документация передаются заказчику по договору.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section id="growth-legacy" class="hidden mt-8 scroll-mt-24 md:scroll-mt-28">
           <div class="reveal premium-shell">
             <div class="premium-head">
               <p class="premium-kicker">Growth Engine</p>
@@ -370,7 +486,7 @@
           <p class="cta-hint cta-hint--center">Консультация без предоплаты. Старт с быстрого аудита и дорожной карты.</p>
         </section>
 
-        <section class="reveal mt-8 pb-2">
+        <section class="reveal mt-14 pb-2 md:mt-20">
           <div class="cta-center-wrap">
             <button
               type="button"
