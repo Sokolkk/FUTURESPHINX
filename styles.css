@@ -2064,6 +2064,9 @@ body {
   .form-modal__dialog {
     width: calc(100vw - 12px);
     margin: 8px auto;
+    max-height: calc(100vh - 16px);
+    display: flex;
+    flex-direction: column;
   }
 
   .lead-form__grid {
@@ -2071,7 +2074,10 @@ body {
   }
 
   .form-modal__body {
-    max-height: calc(100vh - 72px - 16px);
+    max-height: none;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
   }
 }
 
