@@ -1,6 +1,4 @@
 const revealItems = document.querySelectorAll(".reveal");
-const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyUs1-RhSnAnVu3MHnGt1LZ-CLM1V-k5OVudEaPMGj7uZDX2-lmnnBKiEK7C6rh_Eripg/exec";
 
 const revealObserver = new IntersectionObserver(
   (entries, observer) => {
@@ -18,263 +16,179 @@ const revealObserver = new IntersectionObserver(
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
-const leadFormModal = document.getElementById("leadFormModal");
-const leadCaptureForm = document.getElementById("leadCaptureForm");
-const leadFormStatus = document.getElementById("leadFormStatus");
-const leadSubmitBtn = document.getElementById("leadSubmitBtn");
-const leadContactInput = document.getElementById("leadContactInput");
-const leadMessageInput = document.getElementById("leadMessageInput");
-const leadConsentInput = document.getElementById("leadConsentInput");
-const openFormButtons = document.querySelectorAll(".js-open-form");
-const closeFormTriggers = document.querySelectorAll("[data-close-form]");
+(function() {
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUs1-RhSnAnVu3MHnGt1LZ-CLM1V-k5OVudEaPMGj7uZDX2-lmnnBKiEK7C6rh_Eripg/exec';
 
-function openLeadFormModal() {
-  if (!leadFormModal) return;
-  leadFormModal.classList.remove("is-closing");
-  leadFormModal.hidden = false;
-  leadFormModal.setAttribute("aria-hidden", "false");
-  document.documentElement.classList.add("modal-open");
-  requestAnimationFrame(() => {
-    leadFormModal.classList.add("is-visible");
-  });
-}
+  var modal = document.getElementById('leadFormModal');
+  var form = document.getElementById('leadCaptureForm');
+  var statusEl = document.getElementById('leadFormStatus');
+  var submitBtn = document.getElementById('leadSubmitBtn');
+  var nameInput = form && form.querySelector('input[name="name"]');
+  var contactInput = document.getElementById('leadContactInput');
+  var taskInput = form && form.querySelector('select[name="taskType"]');
+  var messageInput = document.getElementById('leadMessageInput');
+  var consentInput = document.getElementById('leadConsentInput');
 
-function closeLeadFormModal() {
-  if (!leadFormModal) return;
-  leadFormModal.classList.remove("is-visible");
-  leadFormModal.classList.add("is-closing");
+  if (!modal || !form) return;
 
-  const finalizeClose = () => {
-    leadFormModal.hidden = true;
-    leadFormModal.setAttribute("aria-hidden", "true");
-    leadFormModal.classList.remove("is-closing");
-    document.documentElement.classList.remove("modal-open");
-    if (leadFormStatus) {
-      leadFormStatus.textContent = "";
-      leadFormStatus.className = "lead-form__status";
-    }
-    if (leadCaptureForm) {
-      leadCaptureForm.querySelectorAll(".is-invalid").forEach((node) => {
-        node.classList.remove("is-invalid");
-      });
-      leadCaptureForm.querySelectorAll(".lead-field__error").forEach((node) => {
-        node.textContent = "";
-      });
-    }
-  };
+  /* ---- open / close ---- */
 
-  setTimeout(finalizeClose, 320);
-}
-
-openFormButtons.forEach((btn) => {
-  btn.addEventListener("click", openLeadFormModal);
-});
-
-closeFormTriggers.forEach((node) => {
-  node.addEventListener("click", closeLeadFormModal);
-});
-
-window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && leadFormModal && !leadFormModal.hidden) {
-    closeLeadFormModal();
-  }
-});
-
-async function handleSubmit(formData) {
-  await fetch(SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify(formData)
-  });
-}
-
-if (leadCaptureForm) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-  const telegramRegex = /^(?:@[\w]{5,32}|https?:\/\/(?:t\.me|telegram\.me)\/[\w]{5,32})$/i;
-  const phoneRegex = /^(?:\+?\d[\d\s\-()]{8,}\d)$/;
-
-  function isValidContact(value) {
-    const clean = String(value || "").trim();
-    return emailRegex.test(clean) || telegramRegex.test(clean) || phoneRegex.test(clean);
-  }
-
-  function validateContact() {
-    if (!leadContactInput) return true;
-    const value = leadContactInput.value.trim();
-    if (!value) {
-      leadContactInput.setCustomValidity("Укажите email, Telegram или телефон.");
-      return false;
-    }
-    if (!isValidContact(value)) {
-      leadContactInput.setCustomValidity("Введите корректный email, Telegram (@username или t.me/...) либо телефон.");
-      return false;
-    }
-    leadContactInput.setCustomValidity("");
-    return true;
-  }
-
-  function validateMessage() {
-    if (!leadMessageInput) return true;
-    const text = leadMessageInput.value.trim();
-    if (text.length < 50) {
-      leadMessageInput.setCustomValidity("Описание задачи должно быть не короче 50 символов.");
-      return false;
-    }
-    leadMessageInput.setCustomValidity("");
-    return true;
-  }
-
-  if (leadContactInput) {
-    leadContactInput.addEventListener("input", validateContact);
-  }
-
-  if (leadMessageInput) {
-    leadMessageInput.addEventListener("input", validateMessage);
-  }
-
-  leadCaptureForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const contactOk = validateContact();
-    const messageOk = validateMessage();
-    if (!contactOk || !messageOk || !leadCaptureForm.reportValidity()) return;
-
-    const form = new FormData(leadCaptureForm);
-    const payload = Object.fromEntries(form.entries());
-    payload.task_type = payload.taskType || "";
-    payload["Тип задачи"] = payload.taskType || "";
-    payload["Контакт"] = payload.contact || "";
-    payload["Описание"] = payload.message || "";
-    payload.source = "FutureSphinx Landing";
-    payload.timestamp = new Date().toISOString();
-
-    if (leadSubmitBtn) {
-      leadSubmitBtn.disabled = true;
-      leadSubmitBtn.classList.add("is-loading");
-      leadSubmitBtn.textContent = "Отправляем...";
-    }
-
-    if (leadFormStatus) {
-      leadFormStatus.textContent = "Отправляем заявку...";
-      leadFormStatus.className = "lead-form__status is-pending";
-    }
-
-    try {
-      await handleSubmit(payload);
-      if (leadFormStatus) {
-        leadFormStatus.textContent = "Готово! Заявка отправлена.";
-        leadFormStatus.className = "lead-form__status is-success";
-      }
-      alert("Заявка улетела в FutureSphinx!");
-      leadCaptureForm.reset();
-      setTimeout(() => {
-        closeLeadFormModal();
-      }, 800);
-    } catch (error) {
-      if (leadFormStatus) {
-        leadFormStatus.textContent = "Не удалось отправить. Попробуйте еще раз.";
-        leadFormStatus.className = "lead-form__status is-error";
-      }
-    } finally {
-      if (leadSubmitBtn) {
-        leadSubmitBtn.disabled = false;
-        leadSubmitBtn.classList.remove("is-loading");
-        leadSubmitBtn.textContent = "Отправить заявку";
-      }
-    }
-  });
-}
-
-if (leadCaptureForm) {
-  const leadNameInput = leadCaptureForm.querySelector('input[name="name"]');
-  const leadTaskTypeInput = leadCaptureForm.querySelector('select[name="taskType"]');
-  const trackedValidationFields = [
-    leadNameInput,
-    leadContactInput,
-    leadTaskTypeInput,
-    leadMessageInput,
-    leadConsentInput
-  ].filter(Boolean);
-
-  function ensureInlineErrorNode(field) {
-    const wrapper = field.closest(".lead-field, .lead-consent");
-    if (!wrapper) return null;
-    let node = wrapper.querySelector(".lead-field__error");
-    if (!node) {
-      node = document.createElement("p");
-      node.className = "lead-field__error";
-      node.setAttribute("aria-live", "polite");
-      wrapper.appendChild(node);
-    }
-    return node;
-  }
-
-  function setInlineError(field, message) {
-    const wrapper = field.closest(".lead-field, .lead-consent");
-    const node = ensureInlineErrorNode(field);
-    const invalid = Boolean(message);
-    field.classList.toggle("is-invalid", invalid);
-    field.setAttribute("aria-invalid", invalid ? "true" : "false");
-    if (wrapper) wrapper.classList.toggle("is-invalid", invalid);
-    if (node) node.textContent = message || "";
-  }
-
-  function validateFieldWithHint(field) {
-    if (!field) return true;
-    let message = "";
-
-    if (field === leadNameInput) {
-      const value = field.value.trim();
-      if (!value) message = "Укажите имя.";
-      else if (value.length < 2) message = "Имя должно быть не короче 2 символов.";
-    } else if (field === leadTaskTypeInput) {
-      if (!field.value.trim()) message = "Выберите тип задачи.";
-    } else if (field === leadConsentInput) {
-      if (!field.checked) message = "Подтвердите согласие на обработку персональных данных.";
-    } else if (field === leadContactInput || field === leadMessageInput) {
-      if (!field.checkValidity()) message = field.validationMessage || "Проверьте поле.";
-    } else if (!field.checkValidity()) {
-      message = field.validationMessage || "Проверьте поле.";
-    }
-
-    setInlineError(field, message);
-    return !message;
-  }
-
-  function clearInlineErrors() {
-    trackedValidationFields.forEach((field) => setInlineError(field, ""));
-  }
-
-  const submitValidationHandler = (event) => {
-    let firstInvalidField = null;
-    trackedValidationFields.forEach((field) => {
-      const ok = validateFieldWithHint(field);
-      if (!ok && !firstInvalidField) firstInvalidField = field;
+  function open() {
+    modal.classList.remove('is-closing');
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('modal-open');
+    requestAnimationFrame(function () {
+      modal.classList.add('is-visible');
     });
+  }
 
-    if (firstInvalidField) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      firstInvalidField.focus({ preventScroll: false });
-      if (leadFormStatus) {
-        leadFormStatus.textContent = "Проверьте поля формы: есть ошибки.";
-        leadFormStatus.className = "lead-form__status is-error";
-      }
+  function close(finalize) {
+    if (finalize) return forceClose();
+    modal.classList.remove('is-visible');
+    modal.classList.add('is-closing');
+    setTimeout(forceClose, 300);
+  }
+
+  function forceClose() {
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('is-visible', 'is-closing');
+    document.documentElement.classList.remove('modal-open');
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'lead-form__status'; }
+    clearErrors();
+  }
+
+  document.querySelectorAll('.js-open-form').forEach(function (btn) {
+    btn.addEventListener('click', open);
+  });
+
+  document.querySelectorAll('[data-close-form]').forEach(function (el) {
+    el.addEventListener('click', function () { close(); });
+  });
+
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal && !modal.hidden) close();
+  });
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) close();
+  });
+
+  /* ---- validation ---- */
+
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  var tgRe = /^(?:@[\w]{5,32}|https?:\/\/(?:t\.me|telegram\.me)\/[\w]{5,32})$/i;
+  var phoneRe = /^(?:\+?\d[\d\s\-()]{8,}\d)$/;
+
+  function isValidContact(v) {
+    var s = String(v || '').trim();
+    return emailRe.test(s) || tgRe.test(s) || phoneRe.test(s);
+  }
+
+  function ensureErrorEl(field) {
+    var wrap = field.closest('.lead-field, .lead-consent');
+    if (!wrap) return null;
+    var el = wrap.querySelector('.lead-field__error');
+    if (!el) {
+      el = document.createElement('p');
+      el.className = 'lead-field__error';
+      el.setAttribute('aria-live', 'polite');
+      wrap.appendChild(el);
+    }
+    return el;
+  }
+
+  function setError(field, msg) {
+    field.classList.toggle('is-invalid', !!msg);
+    field.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    var err = ensureErrorEl(field);
+    if (err) err.textContent = msg || '';
+  }
+
+  function clearErrors() {
+    [nameInput, contactInput, taskInput, messageInput, consentInput].forEach(function (f) {
+      if (f) setError(f, '');
+    });
+  }
+
+  function validateField(field) {
+    if (!field) return true;
+    var msg = '';
+
+    if (field === nameInput) {
+      var v = field.value.trim();
+      if (!v) msg = 'Укажите имя.';
+      else if (v.length < 2) msg = 'Имя должно быть не короче 2 символов.';
+    } else if (field === contactInput) {
+      var cv = field.value.trim();
+      if (!cv) msg = 'Укажите email, Telegram или телефон.';
+      else if (!isValidContact(cv)) msg = 'Введите корректный email, Telegram (@username) или телефон.';
+    } else if (field === taskInput) {
+      if (!field.value.trim()) msg = 'Выберите тип задачи.';
+    } else if (field === messageInput) {
+      var mv = field.value.trim();
+      if (mv.length < 50) msg = 'Описание должно быть не короче 50 символов.';
+    } else if (field === consentInput) {
+      if (!field.checked) msg = 'Подтвердите согласие на обработку данных.';
+    }
+
+    setError(field, msg);
+    return !msg;
+  }
+
+  /* ---- live validation ---- */
+
+  if (contactInput) contactInput.addEventListener('input', function () { validateField(contactInput); });
+  if (messageInput) messageInput.addEventListener('input', function () { validateField(messageInput); });
+
+  /* ---- submit ---- */
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var ok = true;
+    [nameInput, contactInput, taskInput, messageInput, consentInput].forEach(function (f) {
+      if (!validateField(f)) ok = false;
+    });
+    if (!ok) {
+      if (statusEl) { statusEl.textContent = 'Проверьте поля: есть ошибки.'; statusEl.className = 'lead-form__status is-error'; }
       return;
     }
-  };
 
-  leadCaptureForm.addEventListener("submit", submitValidationHandler, true);
+    var fd = new FormData(form);
+    var payload = Object.fromEntries(fd.entries());
+    payload.source = 'FutureSphinx Landing';
+    payload.timestamp = new Date().toISOString();
 
-  trackedValidationFields.forEach((field) => {
-    const ev = field === leadTaskTypeInput || field === leadConsentInput ? "change" : "input";
-    field.addEventListener(ev, () => validateFieldWithHint(field));
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Отправляем...'; }
+    if (statusEl) { statusEl.textContent = 'Отправляем заявку...'; statusEl.className = 'lead-form__status is-pending'; }
+
+    fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) })
+      .then(function () {
+        if (statusEl) { statusEl.textContent = 'Готово! Заявка отправлена.'; statusEl.className = 'lead-form__status is-success'; }
+        form.reset();
+        setTimeout(function () { close(true); }, 900);
+      })
+      .catch(function () {
+        if (statusEl) { statusEl.textContent = 'Ошибка отправки. Попробуйте ещё раз.'; statusEl.className = 'lead-form__status is-error'; }
+      })
+      .finally(function () {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Отправить заявку'; }
+      });
   });
 
-  if (leadFormModal) {
-    leadFormModal.addEventListener("transitionend", () => {
-      if (leadFormModal.hidden) clearInlineErrors();
+  /* ---- consent details scroll ---- */
+
+  var consentDetails = form.querySelector('.lead-consent-details');
+  if (consentDetails) {
+    consentDetails.addEventListener('toggle', function () {
+      if (!modal.hidden && consentDetails.open) {
+        consentDetails.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     });
   }
-}
+})();
 
 const scrollLinks = document.querySelectorAll("a.js-scroll[href^='#']");
 scrollLinks.forEach((link) => {

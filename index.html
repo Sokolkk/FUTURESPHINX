@@ -525,92 +525,71 @@
     <div class="form-modal__dialog" role="document">
       <div class="form-modal__head">
         <h3 id="leadFormTitle">Оставить заявку</h3>
-        <button type="button" class="form-modal__close" data-close-form aria-label="Закрыть форму">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M6 6l12 12M18 6l-12 12"></path>
-          </svg>
+        <button type="button" class="form-modal__close" data-close-form aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
         </button>
       </div>
       <div class="form-modal__body">
-        <div class="form-frame-shell">
-          <form id="leadCaptureForm" class="lead-form" novalidate>
-            <p class="lead-form__subtitle">Заполните форму — отвечу в течение 30 минут.</p>
+        <form id="leadCaptureForm" class="lead-form" novalidate>
+          <p class="lead-form__subtitle">Заполните форму — отвечу в течение 30 минут.</p>
 
-            <div class="lead-form__grid">
-              <label class="lead-field">
-                <span>Ваше имя</span>
-                <input type="text" name="name" placeholder="Например: Михаил" required />
-              </label>
-              <label class="lead-field">
-                <span>Контакт (Email / Telegram / Телефон)</span>
-                <input
-                  id="leadContactInput"
-                  type="text"
-                  name="contact"
-                  placeholder="you@example.com / @username / +7 999 123-45-67"
-                  required
-                />
-              </label>
+          <div class="lead-form__row">
+            <div class="lead-field">
+              <label>Ваше имя</label>
+              <input type="text" name="name" placeholder="Например: Михаил" required />
             </div>
-
-            <div class="lead-form__grid">
-              <label class="lead-field">
-                <span>Компания или проект</span>
-                <input type="text" name="project" placeholder="Название компании или ссылка" />
-              </label>
-              <label class="lead-field">
-                <span>Тип задачи</span>
-                <select name="taskType" required>
-                  <option value="" selected disabled>Выберите тип задачи</option>
-                  <option value="ИИ-агенты">ИИ-агенты</option>
-                  <option value="Voice Tech">Voice Tech</option>
-                  <option value="MVP за 48 часов">MVP за 48 часов</option>
-                  <option value="Автоматизация">Автоматизация</option>
-                  <option value="Другое">Другое</option>
-                </select>
-              </label>
+            <div class="lead-field">
+              <label>Контакт (Email / Telegram / Телефон)</label>
+              <input id="leadContactInput" type="text" name="contact" placeholder="you@example.com / @username / +7 999 123-45-67" required />
             </div>
+          </div>
 
-            <label class="lead-field">
-              <span>Кратко о задаче</span>
-              <textarea
-                id="leadMessageInput"
-                name="message"
-                rows="4"
-                minlength="50"
-                placeholder="Что нужно запустить и в какие сроки? Минимум 50 символов."
-                required
-              ></textarea>
-            </label>
-
-            <label class="lead-consent">
-              <input id="leadConsentInput" type="checkbox" name="consent" required />
-              <span>Согласен на обработку персональных данных для обратной связи.</span>
-            </label>
-            <details class="lead-consent-details">
-              <summary>Прочитать согласие на обработку персональных данных (152-ФЗ)</summary>
-              <p>
-                Нажимая «Отправить заявку», вы подтверждаете согласие на обработку персональных данных
-                (имя, контакт, данные проекта и текст заявки) в целях обратной связи и подготовки коммерческого
-                предложения. Обработка включает сбор, запись, хранение и использование данных с применением и без
-                применения средств автоматизации. Согласие действует до достижения цели обработки или до отзыва.
-              </p>
-              <p>
-                Основание: Федеральный закон РФ от 27.07.2006 № 152-ФЗ «О персональных данных».
-                <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank" rel="noreferrer">
-                  Текст закона
-                </a>
-              </p>
-            </details>
-
-            <div class="lead-form__actions">
-              <button id="leadSubmitBtn" type="submit" class="lead-submit-btn">
-                Отправить заявку
-              </button>
-              <p id="leadFormStatus" class="lead-form__status" aria-live="polite"></p>
+          <div class="lead-form__row">
+            <div class="lead-field">
+              <label>Компания или проект</label>
+              <input type="text" name="project" placeholder="Название компании или ссылка" />
             </div>
-          </form>
-        </div>
+            <div class="lead-field">
+              <label>Тип задачи</label>
+              <select name="taskType" required>
+                <option value="" selected disabled>Выберите тип задачи</option>
+                <option value="ИИ-агенты">ИИ-агенты</option>
+                <option value="Voice Tech">Voice Tech</option>
+                <option value="MVP за 48 часов">MVP за 48 часов</option>
+                <option value="Автоматизация">Автоматизация</option>
+                <option value="Другое">Другое</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="lead-field">
+            <label>Кратко о задаче</label>
+            <textarea id="leadMessageInput" name="message" rows="4" minlength="50" placeholder="Что нужно запустить и в какие сроки? Минимум 50 символов." required></textarea>
+          </div>
+
+          <label class="lead-consent">
+            <input id="leadConsentInput" type="checkbox" name="consent" required />
+            <span>Согласен на обработку персональных данных для обратной связи.</span>
+          </label>
+          <details class="lead-consent-details">
+            <summary>Прочитать согласие на обработку персональных данных (152-ФЗ)</summary>
+            <p>
+              Нажимая «Отправить заявку», вы подтверждаете согласие на обработку персональных данных
+              (имя, контакт, данные проекта и текст заявки) в целях обратной связи и подготовки коммерческого
+              предложения. Обработка включает сбор, запись, хранение и использование данных с применением и без
+              применения средств автоматизации. Согласие действует до достижения цели обработки или до отзыва.
+            </p>
+            <p>
+              Основание: Федеральный закон РФ от 27.07.2006 № 152-ФЗ «О персональных данных».
+              <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank" rel="noreferrer">Текст закона</a>
+            </p>
+          </details>
+
+          <div class="lead-form__actions">
+            <button id="leadSubmitBtn" type="submit" class="lead-submit-btn">Отправить заявку</button>
+            <p id="leadFormStatus" class="lead-form__status" aria-live="polite"></p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
