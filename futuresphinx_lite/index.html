@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Разработка IT-решений и автоматизация | FutureSphinx</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M14 46l6-24 12 10 12-10 6 24-18 8-18-8z' fill='%2300D1FF'/><path d='M24 18l8-8 8 8' fill='none' stroke='%2300D1FF' stroke-width='4'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { electric: "#00D1FF" },
+          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lead-form.css" />
+</head>
+<body class="bg-[#04070f] text-slate-100 antialiased">
+
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" style="background:url('./assets/hero-board.jpg') center/cover no-repeat">
+    <div class="absolute inset-0 bg-[linear-gradient(160deg,rgba(1,7,22,0.72),rgba(3,4,10,0.85))]"></div>
+    <div class="absolute -top-[20vh] -left-[10vw] w-[60vw] aspect-square rounded-full bg-[radial-gradient(circle,rgba(0,209,255,0.12),transparent_70%)] blur-[90px]"></div>
+    <div class="absolute -bottom-[25vh] -right-[10vw] w-[55vw] aspect-square rounded-full bg-[radial-gradient(circle,rgba(111,71,255,0.10),transparent_70%)] blur-[90px]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50"></div>
+  </div>
+
+  <main class="mx-auto max-w-[960px] px-4 py-6 md:px-6 md:py-10">
+
+    <header class="flex items-center gap-2 mb-10 md:mb-14">
+      <span class="inline-flex h-7 w-7 items-center justify-center rounded border border-electric/40 bg-electric/10">
+        <svg viewBox="0 0 64 64" class="h-4 w-4 text-electric" fill="none" stroke="currentColor" stroke-width="4">
+          <path d="M14 46l6-24 12 10 12-10 6 24-18 8-18-8z"></path>
+          <path d="M24 18l8-8 8 8"></path>
+        </svg>
+      </span>
+      <span class="text-[11px] font-extrabold tracking-[0.15em] text-slate-300">FUTURESPHINX</span>
+    </header>
+
+    <section class="mb-14 md:mb-18">
+      <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-electric/80 mb-3">High-Tech Lab &bull; Product Agency</p>
+      <h1 class="text-[28px] font-extrabold leading-[1.08] text-white max-w-3xl md:text-5xl md:leading-[1.05]">
+        Автоматизация и Быстрые Сайты: от идеи до MVP за&nbsp;48&nbsp;часов
+      </h1>
+      <p class="mt-4 text-[15px] leading-relaxed text-slate-300 max-w-2xl md:text-lg">
+        Решаю технические задачи бизнеса: парсеры, боты, быстрые лендинги. Фиксированная цена и&nbsp;сроки&nbsp;&mdash; без сюрпризов.
+      </p>
+      <button type="button"
+         class="js-open-form cta-main inline-flex items-center gap-2.5 mt-6 rounded-full bg-electric px-7 py-3.5 text-sm font-bold text-[#04070f] active:scale-[0.97] transition-transform touch-manipulation hover:brightness-110">
+        <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+        Оставить заявку — расчёт за 5 минут
+      </button>
+      <p class="mt-3 text-[13px] text-electric/75 font-semibold">
+        Или сразу в <a href="https://t.me/sokolkk" target="_blank" rel="noreferrer" class="underline hover:text-white transition">Telegram</a>. Без обязательств.
+      </p>
+    </section>
+
+    <section class="mb-14 md:mb-18 reveal">
+      <h2 class="text-2xl font-extrabold text-white mb-6 md:text-3xl">Что я решаю</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+
+        <article class="card group rounded-xl border border-cyan-300/25 bg-[linear-gradient(150deg,rgba(8,20,45,0.92),rgba(6,14,30,0.88))] p-5 transition-colors">
+          <div class="w-10 h-10 rounded-lg border border-cyan-300/40 bg-cyan-500/10 flex items-center justify-center mb-4 group-hover:border-cyan-300/70 transition-colors">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 text-cyan-300" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white">Нужен сайт?</h3>
+          <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+            Сделаю лёгкий лендинг без лишнего мусора. Скорость загрузки 100/100.
+          </p>
+        </article>
+
+        <article class="card group rounded-xl border border-violet-300/25 bg-[linear-gradient(150deg,rgba(12,16,42,0.92),rgba(7,14,34,0.88))] p-5 transition-colors">
+          <div class="w-10 h-10 rounded-lg border border-violet-300/40 bg-violet-500/10 flex items-center justify-center mb-4 group-hover:border-violet-300/70 transition-colors">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 text-violet-300" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white">Рутина съедает время?</h3>
+          <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+            Напишу скрипт, который сделает за вас работу целого отдела. Автоматизирую отчёты, рассылки, обработку данных.
+          </p>
+        </article>
+
+        <article class="card group rounded-xl border border-fuchsia-300/25 bg-[linear-gradient(150deg,rgba(18,17,42,0.92),rgba(9,14,33,0.88))] p-5 transition-colors">
+          <div class="w-10 h-10 rounded-lg border border-fuchsia-300/40 bg-fuchsia-500/10 flex items-center justify-center mb-4 group-hover:border-fuchsia-300/70 transition-colors">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 text-fuchsia-300" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3a3 3 0 0 0-3 3v1H8a3 3 0 0 0-3 3v1h1a3 3 0 0 0 3 3h1v1a3 3 0 0 0 3 3h1v-1a3 3 0 0 0 3-3v-1h1a3 3 0 0 0 3-3v-1h-1a3 3 0 0 0-3-3h-1V6a3 3 0 0 0-3-3h-1z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white">Нужен ИИ?</h3>
+          <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+            Внедрю нейросети в ваш бизнес: от умных чат-ботов до аналитики данных и автоматической обработки заявок.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="mb-14 md:mb-18 reveal">
+      <h2 class="text-2xl font-extrabold text-white mb-6 md:text-3xl">Кейсы</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+
+        <article class="rounded-xl border border-white/12 bg-[linear-gradient(150deg,rgba(8,22,48,0.9),rgba(6,15,34,0.86))] p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-[28px] leading-none shrink-0">&#x1F5BC;</span>
+            <div>
+              <h3 class="font-bold text-white">Пакетная обработка изображений</h3>
+              <p class="mt-0.5 text-[11px] font-bold uppercase tracking-[0.15em] text-electric/70">Результат</p>
+              <p class="mt-1 text-sm text-slate-300 leading-relaxed">Обработка 1000+ фото за секунды. Автоматическая обрезка, сжатие, водяные знаки&nbsp;&mdash; всё в один клик.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-white/12 bg-[linear-gradient(150deg,rgba(10,18,44,0.9),rgba(7,15,36,0.86))] p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-[28px] leading-none shrink-0">&#x1F916;</span>
+            <div>
+              <h3 class="font-bold text-white">AI-интервьюер</h3>
+              <p class="mt-0.5 text-[11px] font-bold uppercase tracking-[0.15em] text-electric/70">Результат</p>
+              <p class="mt-1 text-sm text-slate-300 leading-relaxed">Автоматический отсев кандидатов 24/7. Собеседование без участия человека, мгновенный отчёт в Telegram.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="mb-14 md:mb-18 reveal">
+      <div class="rounded-xl border border-white/12 bg-[linear-gradient(152deg,rgba(8,19,41,0.92),rgba(6,13,29,0.88))] p-6 md:p-8">
+        <h2 class="text-2xl font-extrabold text-white mb-4 md:text-3xl">Безопасность сделки</h2>
+        <p class="text-[15px] text-slate-300 leading-relaxed mb-5 max-w-2xl">
+          Работаю официально как <strong class="text-electric font-semibold">самозанятый</strong>.
+          Заключаем договор, выдаю чеки. Код открыт и прозрачен&nbsp;&mdash; никаких «чёрных ящиков».
+          Вы видите результат до оплаты.
+        </p>
+        <a href="https://github.com/Sokolkk" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2.5 rounded-full border border-electric/40 bg-electric/10 px-5 py-3 text-sm font-bold text-electric hover:bg-electric/20 active:scale-[0.97] transition-all touch-manipulation">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+          Проверьте качество кода на GitHub
+        </a>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="rounded-xl border border-electric/25 bg-[linear-gradient(152deg,rgba(8,20,45,0.96),rgba(6,14,31,0.92))] p-6 md:p-10 text-center shadow-[0_0_48px_rgba(0,209,255,0.06)]">
+        <h2 class="text-2xl font-extrabold text-white mb-3 md:text-4xl md:leading-[1.12]">
+          Бесплатная консультация + Демо-версия вашего решения за&nbsp;1&nbsp;день
+        </h2>
+        <p class="text-[15px] text-slate-300 mb-7 max-w-lg mx-auto md:text-base">
+          Расскажите о задаче&nbsp;&mdash; подготовлю прототип и точную смету. Без предоплаты.
+        </p>
+        <div class="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <button type="button"
+             class="js-open-form cta-main inline-flex items-center gap-2.5 rounded-full bg-electric px-7 py-3.5 text-sm font-bold text-[#04070f] active:scale-[0.97] transition-transform touch-manipulation hover:brightness-110">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+            Оставить заявку
+          </button>
+          <a href="https://t.me/sokolkk" target="_blank" rel="noreferrer"
+             class="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-bold text-slate-200 hover:bg-white/10 active:scale-[0.97] transition-all touch-manipulation">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.46-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.441-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.099.154.232.17.327.016.095.036.31.023.357z"/>
+            </svg>
+            Telegram
+          </a>
+          <a href="mailto:miansokolov@gmail.com"
+             class="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-bold text-slate-200 hover:bg-white/10 active:scale-[0.97] transition-all touch-manipulation">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M22 4L12 13 2 4"/>
+            </svg>
+            Почта
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-14 pt-5 border-t border-white/8 text-center text-xs text-slate-500 pb-4">
+      &copy; 2026 FutureSphinx. Самозанятый Соколов М.А. miansokolov@gmail.com
+    </footer>
+
+  </main>
+
+  <div id="leadFormModal" class="form-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="leadFormTitle">
+    <div class="form-modal__backdrop" data-close-form></div>
+    <div class="form-modal__dialog" role="document">
+      <div class="form-modal__head">
+        <h3 id="leadFormTitle">Оставить заявку</h3>
+        <button type="button" class="form-modal__close" data-close-form aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+        </button>
+      </div>
+      <div class="form-modal__body">
+        <form id="leadCaptureForm" class="lead-form" novalidate>
+          <p class="lead-form__subtitle">Заполните форму — отвечу в течение 30 минут.</p>
+
+          <div class="lead-form__row">
+            <div class="lead-field">
+              <label>Ваше имя</label>
+              <input type="text" name="name" placeholder="Например: Михаил" required />
+            </div>
+            <div class="lead-field">
+              <label>Контакт (Email / Telegram / Телефон)</label>
+              <input id="leadContactInput" type="text" name="contact" placeholder="you@example.com / @username / +7 999 123-45-67" required />
+            </div>
+          </div>
+
+          <div class="lead-form__row">
+            <div class="lead-field">
+              <label>Компания или проект</label>
+              <input type="text" name="project" placeholder="Название компании или ссылка" />
+            </div>
+            <div class="lead-field">
+              <label>Тип задачи</label>
+              <select name="taskType" required>
+                <option value="" selected disabled>Выберите тип задачи</option>
+                <option>Автоматизация (скрипты, боты)</option>
+                <option>Веб-разработка (лендинг, сайт)</option>
+                <option>ИИ и нейросети</option>
+                <option>MVP за 48 часов</option>
+                <option>Другое</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="lead-field">
+            <label>Кратко о задаче</label>
+            <textarea id="leadMessageInput" name="message" rows="4" minlength="50" placeholder="Что нужно запустить и в какие сроки? Минимум 50 символов." required></textarea>
+          </div>
+
+          <label class="lead-consent">
+            <input id="leadConsentInput" type="checkbox" name="consent" required />
+            <span>Согласен на обработку персональных данных для обратной связи.</span>
+          </label>
+
+          <div class="lead-form__actions">
+            <button id="leadSubmitBtn" type="submit" class="lead-submit-btn">Отправить заявку</button>
+            <p id="leadFormStatus" class="lead-form__status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+  <script src="./lead-form.js"></script>
+</body>
+</html>
