@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FutureSphinx">
+  <defs>
+    <linearGradient id="c" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#00d1ff"/>
+      <stop offset="1" stop-color="#a98bf5"/>
+    </linearGradient>
+    <radialGradient id="g" cx="50%" cy="45%" r="52%">
+      <stop offset="0" stop-color="#00d1ff" stop-opacity=".40"/>
+      <stop offset="1" stop-color="#00d1ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#08070a"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="#241f2b" stroke-width="2"/>
+  <!-- Свечение технического акцента -->
+  <circle cx="32" cy="30" r="22" fill="url(#g)"/>
+  <!-- Сфера из узлов: образ нейросети -->
+  <g stroke="url(#c)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="32" cy="30" r="16"/>
+    <ellipse cx="32" cy="30" rx="16" ry="6.4"/>
+    <ellipse cx="32" cy="30" rx="6.4" ry="16"/>
+  </g>
+  <!-- Узлы -->
+  <g fill="#bff0ff">
+    <circle cx="32" cy="14" r="2.6"/>
+    <circle cx="32" cy="46" r="2.6"/>
+    <circle cx="16" cy="30" r="2.6"/>
+    <circle cx="48" cy="30" r="2.6"/>
+    <circle cx="32" cy="30" r="3.2" fill="#e8b84b"/>
+  </g>
+</svg>
